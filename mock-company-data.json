@@ -1,0 +1,17 @@
+{
+  "companies": [
+    {
+      "companyName": "Rocha&Ge",
+      "fantasyName": "Rocha&Ge LTDA",
+      "stateRegistry": "1",
+      "townRegistry": "2",
+      "lineBusiness": "Consultoria",
+      "phoneNumber": "123456789",
+      "primaryEmail": "grocha@gmail.com",
+      "secundaryEmail": "grocha@gmail.com",
+      "nFePrimaryEmail": "grocha@gmail.com",
+      "nFeSecundaryEmail": "grocha@gmail.com",
+      "id": 1
+    }
+  ]
+}
