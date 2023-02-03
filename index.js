@@ -11,7 +11,7 @@ app.get("/", (req, res) => {
 app.get("/companies", (req, res) => {
   const companies = data.companies;
   res.setHeader("Access-Control-Allow-Credentials", true);
-  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Origin", req.headers.origin);
   // another common pattern
   // res.setHeader('Access-Control-Allow-Origin', req.headers.origin);
   res.setHeader(
