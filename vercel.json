@@ -1,15 +1,16 @@
 {
     "version": 2,
+    "name": "gp-mock",
     "builds": [
         {
-            "src": "index.js",
+            "src": "src/index.ts",
             "use": "@now/node"
         }
     ],
     "routes": [
         {
             "src": "/(.*)",
-            "dest": "index.js"
+            "dest": "src/index.ts"
         },
         {
             "src": "/companies",
@@ -17,7 +18,7 @@
                 "POST",
                 "GET"
             ],
-            "dest": "index.js"
+            "dest": "src/index.ts"
         }
     ]
 }
