@@ -1,9 +1,18 @@
+import data from "./mock-company-data.json";
 const express = require("express");
 
 const app = express();
 
 app.get("/", (req, res) => {
-  res.send("Express on Vercel");
+  if (req.method === `GET`) {
+    res.send("Express on Vercel");
+  }
+});
+app.get("/companies", (req, res) => {
+  const companies = data.companies;
+  if (req.method === `GET`) {
+    res.json(companies);
+  }
 });
 
 app.listen(5000, () => {

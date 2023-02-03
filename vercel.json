@@ -10,6 +10,14 @@
         {
             "src": "/(.*)",
             "dest": "index.js"
+        },
+        {
+            "src": "/companies",
+            "methods": [
+                "POST",
+                "GET"
+            ],
+            "dest": "index.js"
         }
     ]
 }
