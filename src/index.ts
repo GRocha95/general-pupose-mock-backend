@@ -36,6 +36,32 @@ app.post("/companies", (req, res) => {
   return res.status(200).json(companies);
 });
 
+app.delete("/companies/:id", (req, res) => {
+  var index = 0;
+  companies.forEach((company) => {
+    if (Number(req.params["id"]) == company.id) {
+      companies.splice(index, 1);
+      return res.status(200).json({ message: "Company has removed." });
+    }
+    index++;
+  });
+  return res.status(201).json({ message: "Company not found." });
+});
+
+app.put("/companies/:id", (req, res) => {
+  var index = 0;
+  var companyToModify = req.body;
+  companies.forEach((company) => {
+    if (Number(req.params["id"]) == company.id) {
+      companyToModify.id = company.id;
+      company[index] = companyToModify;
+      return res.status(200).json({ companyToModify });
+    }
+    index++;
+  });
+  return res.status(201).json({ message: "Company not found." });
+});
+
 app.listen(port, () => {
   console.info(`Running on port ${port}.`);
 });
