@@ -54,7 +54,7 @@ app.put("/companies/:id", (req, res) => {
   companies.forEach((company) => {
     if (Number(req.params["id"]) == company.id) {
       companyToModify.id = company.id;
-      company[index] = companyToModify;
+      companies[index] = companyToModify;
       return res.status(200).json({ companyToModify });
     }
     index++;
