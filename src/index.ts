@@ -33,7 +33,7 @@ app.post("/companies", (req, res) => {
   reqCompany.id = highId;
   console.log(req.body);
   companies.push(reqCompany);
-  return res.status(200).json(companies);
+  return res.status(200).json(reqCompany);
 });
 
 app.delete("/companies/:id", (req, res) => {
