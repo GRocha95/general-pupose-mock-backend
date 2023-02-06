@@ -1,0 +1,16 @@
+[
+  {
+    "id": 1,
+    "bairro": "Centro",
+    "cep": "85913566",
+    "complemento": "",
+    "extensao": 5,
+    "idContato": 5,
+    "idDistrito": 2,
+    "logradouro": "Rua",
+    "numero": "125",
+    "referencia": "em frente à SV",
+    "responsavel": "SV",
+    "tipo": 5
+  }
+]

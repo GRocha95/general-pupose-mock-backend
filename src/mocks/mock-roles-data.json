@@ -1,8 +1,6 @@
-{
-    "roles": [
-        {
-            "roleName": "ADM",
-            "id": 1
-        }
-    ]
-}
+[
+    {
+        "roleName": "ADM",
+        "id": 1
+    }
+]

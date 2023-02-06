@@ -2,14 +2,16 @@ import express from "express";
 import cors from "cors";
 import dataCompanies from "./mocks/mock-company-data.json";
 import dataRoles from "./mocks/mock-roles-data.json";
+import dataAddress from "./mocks/mock-address-data.json";
 
 const app = express();
 const port = process.env.PORT || 3399;
 
 app.use(cors());
 app.use(express.json());
-const companies = dataCompanies.companies;
-const roles = dataRoles.roles;
+const companies = dataCompanies;
+const roles = dataRoles;
+const addresses = dataAddress;
 
 app.get("/", (req, res) => {
   if (req.method === `GET`) {
@@ -125,6 +127,63 @@ app.put("/roles/:id", (req, res) => {
       roleToModify.id = role.id;
       roles[index] = roleToModify;
       return res.status(200).json({ roleToModify });
+    }
+    index++;
+  });
+  return res.status(201).json({ message: "Role not found." });
+});
+
+app.get("/address", (req, res) => {
+  if (req.method === `GET`) {
+    res.json(addresses);
+  }
+});
+
+app.get("/address/:id", (req, res) => {
+  addresses.forEach((address) => {
+    if (Number(req.params["id"]) == address.id) {
+      return res.status(200).json(address);
+    }
+  });
+  return res.status(204).json({ message: "Nenhum registro encontrado" });
+});
+
+app.post("/address", (req, res) => {
+  const reqAddress = req.body;
+
+  var highId = 0;
+  addresses.forEach((address) => {
+    address.id > highId;
+    highId = address.id;
+  });
+  highId += 1;
+
+  reqAddress.id = highId;
+  console.log(req.body);
+  addresses.push(reqAddress);
+  return res.status(200).json(reqAddress);
+});
+
+app.delete("/address/:id", (req, res) => {
+  var index = 0;
+  addresses.forEach((address) => {
+    if (Number(req.params["id"]) == address.id) {
+      addresses.splice(index, 1);
+      return res.status(200).json({ message: "Role has removed." });
+    }
+    index++;
+  });
+  return res.status(201).json({ message: "Role not found." });
+});
+
+app.put("/address/:id", (req, res) => {
+  var index = 0;
+  var addressToModify = req.body;
+  addresses.forEach((address) => {
+    if (Number(req.params["id"]) == address.id) {
+      addressToModify.id = address.id;
+      addresses[index] = addressToModify;
+      return res.status(200).json({ addressToModify });
     }
     index++;
   });
