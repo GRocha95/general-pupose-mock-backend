@@ -1,9 +1,12 @@
+import { User } from "./../../example/src/mocks/users";
+import jwt from "jsonwebtoken";
 import express from "express";
 import cors from "cors";
 import dataCompanies from "./mocks/mock-company-data.json";
 import dataRoles from "./mocks/mock-roles-data.json";
 import dataAddress from "./mocks/mock-address-data.json";
 import dataContacts from "./mocks/mock-contacts-data.json";
+import dataUsers from "./mocks/mock-users-data.json";
 
 const app = express();
 const port = process.env.PORT || 3399;
@@ -14,11 +17,52 @@ const companies = dataCompanies;
 const roles = dataRoles;
 const addresses = dataAddress;
 const contacts = dataContacts;
+const users = dataUsers;
 
 app.get("/", (req, res) => {
   if (req.method === `GET`) {
     res.send("API mock works!");
   }
+});
+
+app.post("/login", (req, res) => {
+  const { login, password } = req.body;
+
+  if (!login || !password || login === "" || password === "") {
+    return res.status(400).json({
+      message: "login or password is missing.",
+    });
+  }
+
+  var user: User | undefined;
+
+  users.forEach((userItem: User) => {
+    if (
+      (userItem.userMail == login && userItem.userPassword == password) ||
+      (userItem.userDocument == login && userItem.userPassword)
+    ) {
+      user = userItem;
+    }
+  });
+
+  if (!user) {
+    return res.status(401).json({
+      message: "Credenciais incorretas.",
+    });
+  }
+
+  const secret = "4883f4963c57c7ee87f0854c2965c7bc";
+  const expiresIn = "1d";
+
+  const token = jwt.sign({ id: "1", name: "Teste", email: "email" }, secret, {
+    expiresIn,
+  });
+
+  return res.status(200).json({
+    token: token,
+    name: user.name,
+    document: user.userDocument,
+  });
 });
 
 app.get("/companies", (req, res) => {

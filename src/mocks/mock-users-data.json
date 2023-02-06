@@ -1,0 +1,32 @@
+[
+  {
+    "userDocument": "11222333444455",
+    "userMail": "guerramatheus2@gmail.com",
+    "userPassword": "123mudar",
+    "name": "Matheus"
+  },
+  {
+    "userDocument": "11222333444455",
+    "userMail": "matheus@siliconvillage.dev",
+    "userPassword": "123mudar",
+    "name": "Matheus"
+  },
+  {
+    "userDocument": "11222333444455",
+    "userMail": "henrique@siliconvillage.dev",
+    "userPassword": "123mudar",
+    "name": "Henrique"
+  },
+  {
+    "userDocument": "11222333444455",
+    "userMail": "gelson@siliconvillage.dev",
+    "userPassword": "123mudar",
+    "name": "Gelson"
+  },
+  {
+    "userDocument": "11222333444455",
+    "userMail": "test@email.com",
+    "userPassword": "123mudar",
+    "name": "Teste"
+  }
+]
