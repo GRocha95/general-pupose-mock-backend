@@ -23,6 +23,15 @@ app.get("/companies", (req, res) => {
   }
 });
 
+app.get("/companies/:id", (req, res) => {
+  companies.forEach((companie) => {
+    if (Number(req.params["id"]) == companie.id) {
+      return res.status(200).json(companie);
+    }
+  });
+  return res.status(204).json({ message: "Nenhum registro encontrado" });
+});
+
 app.post("/companies", (req, res) => {
   const reqCompany = req.body;
 
@@ -69,6 +78,15 @@ app.get("/roles", (req, res) => {
   if (req.method === `GET`) {
     res.json(roles);
   }
+});
+
+app.get("/roles/:id", (req, res) => {
+  roles.forEach((role) => {
+    if (Number(req.params["id"]) == role.id) {
+      return res.status(200).json(role);
+    }
+  });
+  return res.status(204).json({ message: "Nenhum registro encontrado" });
 });
 
 app.post("/roles", (req, res) => {
