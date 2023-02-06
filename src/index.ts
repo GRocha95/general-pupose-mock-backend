@@ -1,19 +1,22 @@
 import express from "express";
 import cors from "cors";
-import data from "./mocks/mock-company-data.json";
+import dataCompanies from "./mocks/mock-company-data.json";
+import dataRoles from "./mocks/mock-roles-data.json";
 
 const app = express();
 const port = process.env.PORT || 3399;
 
 app.use(cors());
 app.use(express.json());
-const companies = data.companies;
+const companies = dataCompanies.companies;
+const roles = dataRoles.roles;
 
 app.get("/", (req, res) => {
   if (req.method === `GET`) {
     res.send("API mock works!");
   }
 });
+
 app.get("/companies", (req, res) => {
   if (req.method === `GET`) {
     res.json(companies);
@@ -60,6 +63,54 @@ app.put("/companies/:id", (req, res) => {
     index++;
   });
   return res.status(201).json({ message: "Company not found." });
+});
+
+app.get("/roles", (req, res) => {
+  if (req.method === `GET`) {
+    res.json(roles);
+  }
+});
+
+app.post("/roles", (req, res) => {
+  const reqRole = req.body;
+
+  var highId = 0;
+  roles.forEach((role) => {
+    role.id > highId;
+    highId = role.id;
+  });
+  highId += 1;
+
+  reqRole.id = highId;
+  console.log(req.body);
+  roles.push(reqRole);
+  return res.status(200).json(reqRole);
+});
+
+app.delete("/roles/:id", (req, res) => {
+  var index = 0;
+  roles.forEach((role) => {
+    if (Number(req.params["id"]) == role.id) {
+      roles.splice(index, 1);
+      return res.status(200).json({ message: "Role has removed." });
+    }
+    index++;
+  });
+  return res.status(201).json({ message: "Role not found." });
+});
+
+app.put("/roles/:id", (req, res) => {
+  var index = 0;
+  var roleToModify = req.body;
+  roles.forEach((role) => {
+    if (Number(req.params["id"]) == role.id) {
+      roleToModify.id = role.id;
+      roles[index] = roleToModify;
+      return res.status(200).json({ roleToModify });
+    }
+    index++;
+  });
+  return res.status(201).json({ message: "Role not found." });
 });
 
 app.listen(port, () => {

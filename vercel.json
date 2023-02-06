@@ -16,7 +16,19 @@
             "src": "/companies",
             "methods": [
                 "POST",
-                "GET"
+                "GET",
+                "PUT",
+                "DELETE"
+            ],
+            "dest": "src/index.ts"
+        },
+        {
+            "src": "/roles",
+            "methods": [
+                "POST",
+                "GET",
+                "PUT",
+                "DELETE"
             ],
             "dest": "src/index.ts"
         }
