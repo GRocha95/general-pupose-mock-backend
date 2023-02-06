@@ -3,6 +3,7 @@ import cors from "cors";
 import dataCompanies from "./mocks/mock-company-data.json";
 import dataRoles from "./mocks/mock-roles-data.json";
 import dataAddress from "./mocks/mock-address-data.json";
+import dataContacts from "./mocks/mock-contacts-data.json";
 
 const app = express();
 const port = process.env.PORT || 3399;
@@ -12,6 +13,7 @@ app.use(express.json());
 const companies = dataCompanies;
 const roles = dataRoles;
 const addresses = dataAddress;
+const contacts = dataContacts;
 
 app.get("/", (req, res) => {
   if (req.method === `GET`) {
@@ -169,11 +171,11 @@ app.delete("/address/:id", (req, res) => {
   addresses.forEach((address) => {
     if (Number(req.params["id"]) == address.id) {
       addresses.splice(index, 1);
-      return res.status(200).json({ message: "Role has removed." });
+      return res.status(200).json({ message: "Address has removed." });
     }
     index++;
   });
-  return res.status(201).json({ message: "Role not found." });
+  return res.status(201).json({ message: "Address not found." });
 });
 
 app.put("/address/:id", (req, res) => {
@@ -187,7 +189,64 @@ app.put("/address/:id", (req, res) => {
     }
     index++;
   });
-  return res.status(201).json({ message: "Role not found." });
+  return res.status(201).json({ message: "Address not found." });
+});
+
+app.get("/contacts", (req, res) => {
+  if (req.method === `GET`) {
+    res.json(contacts);
+  }
+});
+
+app.get("/contacts/:id", (req, res) => {
+  contacts.forEach((contact) => {
+    if (Number(req.params["id"]) == contact.id) {
+      return res.status(200).json(contact);
+    }
+  });
+  return res.status(204).json({ message: "Nenhum registro encontrado" });
+});
+
+app.post("/contacts", (req, res) => {
+  const reqContacts = req.body;
+
+  var highId = 0;
+  contacts.forEach((contact) => {
+    contact.id > highId;
+    highId = contact.id;
+  });
+  highId += 1;
+
+  reqContacts.id = highId;
+  console.log(req.body);
+  contacts.push(reqContacts);
+  return res.status(200).json(reqContacts);
+});
+
+app.delete("/contacts/:id", (req, res) => {
+  var index = 0;
+  contacts.forEach((contact) => {
+    if (Number(req.params["id"]) == contact.id) {
+      contacts.splice(index, 1);
+      return res.status(200).json({ message: "Contact has removed." });
+    }
+    index++;
+  });
+  return res.status(201).json({ message: "Contact not found." });
+});
+
+app.put("/contacts/:id", (req, res) => {
+  var index = 0;
+  var contactToModify = req.body;
+  contacts.forEach((contact) => {
+    if (Number(req.params["id"]) == contact.id) {
+      contactToModify.id = contact.id;
+      contacts[index] = contactToModify;
+      return res.status(200).json({ contactToModify });
+    }
+    index++;
+  });
+  return res.status(201).json({ message: "Contact not found." });
 });
 
 app.listen(port, () => {

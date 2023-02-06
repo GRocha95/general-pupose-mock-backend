@@ -1,0 +1,17 @@
+[
+  {
+    "id": 1,
+    "nomeContato": "John Doe",
+    "sexo": "Masculino",
+    "dataAniversario": "01/02",
+    "descricao": "",
+    "descricaoDepartamento": "Financeiro",
+    "descricaoCargo": "Prestador(a) de serviços",
+    "flagResponsavel": "Sim",
+    "email": "john@doe.com",
+    "type": "PABX",
+    "ddd": "11",
+    "number": "1234-5678",
+    "ramal": "5679"
+  }
+]
