@@ -12,6 +12,7 @@
     "type": "PABX",
     "ddd": "11",
     "number": "1234-5678",
-    "ramal": "5679"
+    "ramal": "5679",
+    "secundaryEmail": "johna@doe.com"
   }
 ]
