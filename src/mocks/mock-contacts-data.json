@@ -9,6 +9,22 @@
     "descricaoCargo": "Prestador(a) de serviços",
     "flagResponsavel": "Sim",
     "email": "john@doe.com",
+    "telTips": [
+      {
+        "type": "PABX",
+        "ddd": "11",
+        "number": "1234-5678",
+        "ramal": "5679",
+        "email": ""
+      },
+      {
+        "type": "PABX",
+        "ddd": "11",
+        "number": "1234-5678",
+        "ramal": "5679",
+        "email": ""
+      }
+    ],
     "type": "PABX",
     "ddd": "11",
     "number": "1234-5678",
