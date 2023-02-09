@@ -7,6 +7,7 @@ import dataRoles from "./mocks/mock-roles-data.json";
 import dataAddress from "./mocks/mock-address-data.json";
 import dataContacts from "./mocks/mock-contacts-data.json";
 import dataUsers from "./mocks/mock-users-data.json";
+import dataDepartments from "./mocks/mock-department-data.json";
 
 const app = express();
 const port = process.env.PORT || 3399;
@@ -18,6 +19,7 @@ const roles = dataRoles;
 const addresses = dataAddress;
 const contacts = dataContacts;
 const users = dataUsers;
+const departments = dataDepartments;
 
 app.get("/", (req, res) => {
   if (req.method === `GET`) {
@@ -291,6 +293,63 @@ app.put("/contacts/:id", (req, res) => {
     index++;
   });
   return res.status(201).json({ message: "Contact not found." });
+});
+
+app.get("/departments", (req, res) => {
+  if (req.method === `GET`) {
+    res.json(departments);
+  }
+});
+
+app.get("/departments/:id", (req, res) => {
+  departments.forEach((department) => {
+    if (Number(req.params["id"]) == department.id) {
+      return res.status(200).json(department);
+    }
+  });
+  return res.status(204).json({ message: "Nenhum registro encontrado" });
+});
+
+app.post("/departments", (req, res) => {
+  const reqDepartment = req.body;
+
+  var highId = 0;
+  departments.forEach((department) => {
+    department.id > highId;
+    highId = department.id;
+  });
+  highId += 1;
+
+  reqDepartment.id = highId;
+  console.log(req.body);
+  departments.push(reqDepartment);
+  return res.status(200).json(reqDepartment);
+});
+
+app.delete("/departments/:id", (req, res) => {
+  var index = 0;
+  departments.forEach((department) => {
+    if (Number(req.params["id"]) == department.id) {
+      departments.splice(index, 1);
+      return res.status(200).json({ message: "Department has removed." });
+    }
+    index++;
+  });
+  return res.status(201).json({ message: "Department not found." });
+});
+
+app.put("/departments/:id", (req, res) => {
+  var index = 0;
+  var departmentToModify = req.body;
+  departments.forEach((department) => {
+    if (Number(req.params["id"]) == department.id) {
+      departmentToModify.id = department.id;
+      departments[index] = departmentToModify;
+      return res.status(200).json({ departmentToModify });
+    }
+    index++;
+  });
+  return res.status(201).json({ message: "Department not found." });
 });
 
 app.listen(port, () => {
