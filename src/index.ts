@@ -8,6 +8,7 @@ import dataAddress from "./mocks/mock-address-data.json";
 import dataContacts from "./mocks/mock-contacts-data.json";
 import dataUsers from "./mocks/mock-users-data.json";
 import dataDepartments from "./mocks/mock-department-data.json";
+import dataPeriods from "./mocks/mock-periods-data.json";
 
 const app = express();
 const port = process.env.PORT || 3399;
@@ -20,6 +21,7 @@ const addresses = dataAddress;
 const contacts = dataContacts;
 const users = dataUsers;
 const departments = dataDepartments;
+const periods = dataPeriods;
 
 app.get("/", (req, res) => {
   if (req.method === `GET`) {
@@ -350,6 +352,63 @@ app.put("/departments/:id", (req, res) => {
     index++;
   });
   return res.status(201).json({ message: "Department not found." });
+});
+
+app.get("/periods", (req, res) => {
+  if (req.method === `GET`) {
+    res.json(periods);
+  }
+});
+
+app.get("/periods/:id", (req, res) => {
+  periods.forEach((period) => {
+    if (Number(req.params["id"]) == period.id) {
+      return res.status(200).json(period);
+    }
+  });
+  return res.status(204).json({ message: "Nenhum registro encontrado" });
+});
+
+app.post("/periods", (req, res) => {
+  const reqDepartment = req.body;
+
+  var highId = 0;
+  periods.forEach((period) => {
+    period.id > highId;
+    highId = period.id;
+  });
+  highId += 1;
+
+  reqDepartment.id = highId;
+  console.log(req.body);
+  periods.push(reqDepartment);
+  return res.status(200).json(reqDepartment);
+});
+
+app.delete("/periods/:id", (req, res) => {
+  var index = 0;
+  periods.forEach((period) => {
+    if (Number(req.params["id"]) == period.id) {
+      periods.splice(index, 1);
+      return res.status(200).json({ message: "Period has removed." });
+    }
+    index++;
+  });
+  return res.status(201).json({ message: "Period not found." });
+});
+
+app.put("/periods/:id", (req, res) => {
+  var index = 0;
+  var periodToModify = req.body;
+  periods.forEach((period) => {
+    if (Number(req.params["id"]) == period.id) {
+      periodToModify.id = period.id;
+      periods[index] = periodToModify;
+      return res.status(200).json({ periodToModify });
+    }
+    index++;
+  });
+  return res.status(201).json({ message: "Period not found." });
 });
 
 app.listen(port, () => {

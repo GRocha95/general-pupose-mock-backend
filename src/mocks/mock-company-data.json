@@ -4,7 +4,7 @@
     "fantasyName": "Rocha&Ge LTDA",
     "stateRegistry": "1",
     "townRegistry": "2",
-    "lineBusiness": "Consultoria",
+    "lineBusiness": 2,
     "phoneNumber": "123456789",
     "primaryEmail": "grocha@gmail.com",
     "secundaryEmail": "grocha@gmail.com",
