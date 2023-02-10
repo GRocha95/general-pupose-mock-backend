@@ -1,34 +1,26 @@
 [
   {
-    "id": 1,
-    "nomeContato": "John Doe",
-    "sexo": "Masculino",
-    "dataAniversario": "01/02",
-    "descricao": "",
-    "descricaoDepartamento": "2",
-    "descricaoCargo": "Prestador(a) de serviços",
-    "flagResponsavel": "Sim",
-    "email": "john@doe.com",
+    "nomeContato": "matheus",
+    "sexo": "M",
+    "dataAniversario": "2023-02-07T03:00:00.000Z",
+    "descricaoDepartamento": "38",
+    "descricaoCargo": "atividade 2",
+    "flagResponsavel": "N",
+    "email": "teste@teste.com",
     "telTips": [
       {
-        "type": "PABX",
-        "ddd": "11",
-        "number": "1234-5678",
-        "ramal": "5679",
+        "type": "2",
+        "number": "999999",
+        "ramal": "1212",
         "email": ""
       },
       {
-        "type": "PABX",
-        "ddd": "11",
-        "number": "1234-5678",
-        "ramal": "5679",
-        "email": ""
+        "type": "10",
+        "number": "",
+        "ramal": "",
+        "email": "teste2@teste.com"
       }
     ],
-    "type": "PABX",
-    "ddd": "11",
-    "number": "1234-5678",
-    "ramal": "5679",
-    "secundaryEmail": "johna@doe.com"
+    "id": 1
   }
 ]
